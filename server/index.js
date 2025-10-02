@@ -26,14 +26,17 @@ app.get("/", (req, res) => {
 //Routes
 
 app.use("/api/auth", authRouter)
+
+app.use("/api/post", postRouter)
 async function start() {
     try{
         await mongoose.connect(
             `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_NAME}.gaxvoxd.mongodb.net/?retryWrites=true&w=majority&appName=${DB_NAME}`
+            
         )
 
-        app.listen(3001, () => {
-            console.log("Server started on port 3001");
+        app.listen(PORT, () => {
+            console.log(`Server started on port ${PORT}`);
         });
     } catch (error) {
         console.log(error);
